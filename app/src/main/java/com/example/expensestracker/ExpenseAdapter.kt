@@ -9,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Switch
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 class ExpenseAdapter(
@@ -22,6 +23,9 @@ class ExpenseAdapter(
         val curExpenseIsPaidCheck : CheckBox = itemView.findViewById(R.id.cbPaidExpense)
     }
 
+    fun getprivateitems() : MutableList<IndividualExpense> {
+        return expenses
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
                 R.layout.individual_expense,
@@ -29,19 +33,6 @@ class ExpenseAdapter(
                 false,
             )
         return ExpenseViewHolder(view)
-    }
-
-    fun addExpense(expense: IndividualExpense) {
-        expenses.add(expense)
-        notifyItemInserted(expenses.size - 1)
-    }
-
-    private fun toggleStrikeThrough(expenseName: TextView, isChecked: Boolean) {
-        if (isChecked) {
-            expenseName.paintFlags = expenseName.paintFlags or STRIKE_THRU_TEXT_FLAG
-        } else {
-            expenseName.paintFlags = expenseName.paintFlags and STRIKE_THRU_TEXT_FLAG.inv()
-        }
     }
 
     override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
@@ -61,5 +52,39 @@ class ExpenseAdapter(
 
     override fun getItemCount(): Int {
         return expenses.size
+    }
+
+    fun addExpense(expense: IndividualExpense) {
+        expenses.add(expense)
+        notifyItemInserted(expenses.size - 1)
+        println(expenses)
+    }
+
+    private fun toggleStrikeThrough(expenseName: TextView, isChecked: Boolean) {
+        if (isChecked) {
+            expenseName.paintFlags = expenseName.paintFlags or STRIKE_THRU_TEXT_FLAG
+        } else {
+            expenseName.paintFlags = expenseName.paintFlags and STRIKE_THRU_TEXT_FLAG.inv()
+        }
+    }
+
+    fun sumExpenses() : Double {
+        var total : Double = 0.0
+        for (expense in expenses) {
+            if (expense.expenseIsActive) {
+                total += expense.expenseValue
+            }
+        }
+        return total
+    }
+
+    fun sumActiveToPayExpenses() : Double {
+        var total : Double = 0.0
+        for (expense in expenses) {
+            if (expense.expenseIsActive and !expense.expenseIsPaid) {
+                total += expense.expenseValue
+            }
+        }
+        return total
     }
 }
