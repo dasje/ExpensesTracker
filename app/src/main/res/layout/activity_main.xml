@@ -10,8 +10,8 @@
 
     <TextView
         android:id="@+id/tvAppName"
-        android:layout_width="344dp"
-        android:layout_height="38dp"
+        android:layout_width="382dp"
+        android:layout_height="37dp"
         android:padding="8dp"
         android:text="Current Expenses"
         android:textAlignment="center"
@@ -25,43 +25,59 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvExpenses"
-        android:layout_width="336dp"
+        android:layout_width="375dp"
         android:layout_height="319dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv2ValueLabel" />
 
+
+    <EditText
+        android:id="@+id/etNewExpenseName"
+        android:layout_width="218dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:text="New expense name"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/etDec2NewExpenseAmount"
+        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvExpenses" />
+
     <Button
         android:id="@+id/btnAddNewExpense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:text="Add expense"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.962"
+        app:layout_constraintHorizontal_bias="0.988"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRemainingBudget" />
+        app:layout_constraintTop_toBottomOf="@+id/etDec2NewExpenseAmount" />
 
     <EditText
-        android:id="@+id/etIncome"
-        android:layout_width="130dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/etDec2IncomeValue"
+        android:layout_width="88dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:ems="8"
-        android:inputType="text"
-        android:text="Income"
+        android:inputType="numberDecimal"
+        android:text="0.0"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvExpenses" />
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintStart_toEndOf="@+id/etIncome"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddNewExpense" />
 
     <EditText
         android:id="@+id/etRemainingBudget"
         android:layout_width="130dp"
         android:layout_height="33dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="32dp"
         android:ems="8"
         android:inputType="text"
         android:text="Remaining budget"
@@ -70,11 +86,53 @@
         app:layout_constraintTop_toBottomOf="@+id/etPeriodExpenses" />
 
     <EditText
+        android:id="@+id/etIncome"
+        android:layout_width="130dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:ems="8"
+        android:inputType="text"
+        android:text="Income"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddNewExpense" />
+
+    <TextView
+        android:id="@+id/etDec2BudgetRemaining"
+        android:layout_width="88dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="0.0"
+        android:textSize="12sp"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintStart_toEndOf="@+id/etRemainingBudget"
+        app:layout_constraintTop_toBottomOf="@+id/etDec2PeriodExpensesRemaining" />
+
+    <TextView
+        android:id="@+id/etDec2PeriodExpensesRemaining"
+        android:layout_width="88dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="0.0"
+        android:textSize="12sp"
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/etDec2PeriodExpenses"
+        app:layout_constraintTop_toBottomOf="@+id/etDec2IncomeValue" />
+
+    <EditText
         android:id="@+id/etPeriodExpenses"
         android:layout_width="130dp"
         android:layout_height="33dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:ems="8"
         android:inputType="text"
         android:text="Period expenses"
@@ -82,52 +140,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etIncome" />
 
-    <EditText
-        android:id="@+id/etDec2IncomeValue"
-        android:layout_width="88dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.981"
-        app:layout_constraintStart_toEndOf="@+id/etIncome"
-        app:layout_constraintTop_toBottomOf="@+id/rvExpenses" />
-
-    <EditText
+    <TextView
         android:id="@+id/etDec2PeriodExpenses"
         android:layout_width="88dp"
         android:layout_height="36dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="176dp"
         android:ems="10"
-        android:inputType="numberDecimal"
+        android:text="0.0"
+        android:textSize="12sp"
+        android:textAlignment="textEnd"
         app:layout_constraintStart_toEndOf="@+id/etPeriodExpenses"
         app:layout_constraintTop_toBottomOf="@+id/rvExpenses" />
-
-    <EditText
-        android:id="@+id/etDec2PeriodExpensesRemaining"
-        android:layout_width="88dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        app:layout_constraintStart_toEndOf="@+id/etDec2PeriodExpenses"
-        app:layout_constraintTop_toBottomOf="@+id/etDec2IncomeValue" />
-
-    <EditText
-        android:id="@+id/etDec2BudgetRemaining"
-        android:layout_width="88dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.983"
-        app:layout_constraintStart_toEndOf="@+id/etRemainingBudget"
-        app:layout_constraintTop_toBottomOf="@+id/etDec2PeriodExpensesRemaining" />
 
     <TextView
         android:id="@+id/tv2ExpenseLabel"
@@ -136,16 +160,29 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:text="Expense"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAppName" />
+
+    <TextView
+        android:id="@+id/tv2PaidLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="Paid"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/tv2ActiveExpenseLabel"
         app:layout_constraintTop_toBottomOf="@+id/tvAppName" />
 
     <TextView
         android:id="@+id/tv2ValueLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
+        android:layout_marginStart="172dp"
         android:layout_marginTop="8dp"
         android:text="Value"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/tv2ExpenseLabel"
         app:layout_constraintTop_toBottomOf="@+id/tvAppName" />
 
@@ -153,21 +190,24 @@
         android:id="@+id/tv2ActiveExpenseLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="8dp"
         android:text="Active"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/tv2ValueLabel"
         app:layout_constraintTop_toBottomOf="@+id/tvAppName" />
 
-    <TextView
-        android:id="@+id/tv2PaidLabel"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/etDec2NewExpenseAmount"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="Paid"
-        app:layout_constraintStart_toEndOf="@+id/tv2ActiveExpenseLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvAppName" />
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textSize="12sp"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvExpenses" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
