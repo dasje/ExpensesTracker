@@ -64,7 +64,7 @@ class DBHandler (context: Context) {
             sortOrder               // The sort order
         )
         println(cursor)
-        
+
 //        val itemIds = mutableListOf<Long>()
 //        with(cursor) {
 //            while (moveToNext()) {
