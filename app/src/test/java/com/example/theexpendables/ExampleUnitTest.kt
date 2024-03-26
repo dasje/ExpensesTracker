@@ -1,4 +1,4 @@
-package com.example.expensestracker
+package com.example.theexpendables
 
 import org.junit.Test
 
