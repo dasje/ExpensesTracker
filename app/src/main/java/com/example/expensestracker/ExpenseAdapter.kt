@@ -1,31 +1,33 @@
 package com.example.expensestracker
 
+import android.app.usage.UsageEvents.Event
 import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
-import android.text.BoringLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.EditText
 import android.widget.Switch
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.expensestracker.MainActivity
 
 class ExpenseAdapter(
     private val expenses: MutableList<IndividualExpense>
 ) : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {
 
+    private var listener : ((item : DataClass) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (item: DataClass) -> unit) {
+        this.listener = listener
+    }
+
     class ExpenseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val curExpenseName : TextView = itemView.findViewById(R.id.tvExpenseName)
         val curExpenseValue: TextView = itemView.findViewById(R.id.etDecExpenseValue)
-        val curExpenseSwitch : Switch = itemView.findViewById(R.id.s1ActiveExpense)
+        val curExpenseSwitch : Switch = itemView.findViewById(R.id.s1ActiveExpense).setOnClickListener { listener?.invoke(data[adapterPosition]) }
         val curExpenseIsPaidCheck : CheckBox = itemView.findViewById(R.id.cbPaidExpense)
     }
 
-    fun getprivateitems() : MutableList<IndividualExpense> {
-        return expenses
-    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
                 R.layout.individual_expense,
@@ -33,6 +35,11 @@ class ExpenseAdapter(
                 false,
             )
         return ExpenseViewHolder(view)
+    }
+
+    fun updateEvent(event: Event) {
+        println(event.toString())
+
     }
 
     override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
@@ -47,6 +54,10 @@ class ExpenseAdapter(
                 toggleStrikeThrough(curExpenseName, isChecked)
                 currentExpense.expenseIsPaid = !currentExpense.expenseIsPaid
             }
+        }
+        holder.curExpenseSwitch.setOnClickListener { v ->
+            println(v)
+            MainActivity.
         }
     }
 

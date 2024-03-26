@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        var individualExpenseLayout = R.layout.individual_expense
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         rvExpenses.adapter = expenseAdapter
 
 
-        // Button handling
+        // New expense handling
         var btnAddNewExpense : Button = findViewById(R.id.btnAddNewExpense)
         var etNewExpenseName : EditText = findViewById(R.id.etNewExpenseName)
         var etDec2NewExpenseAmount : EditText = findViewById(R.id.etDec2NewExpenseAmount)
@@ -54,7 +56,6 @@ class MainActivity : AppCompatActivity() {
                     expenseIsPaid = false
                 )
                 expenseAdapter.addExpense(expenseToAdd)
-                println(expenseAdapter.getprivateitems())
                 etNewExpenseName.text.clear()
                 etDec2NewExpenseAmount.text.clear()
                 calculateTotals(expenseAdapter)
