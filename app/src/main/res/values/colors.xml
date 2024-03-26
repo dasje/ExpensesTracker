@@ -2,5 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="blue_shadow">#00202e</color>
+    <color name="blue">#003f5c</color>
+    <color name="blue_highlight">#2c4875</color>
+    <color name="purple_shadow">#8a508f</color>
+    <color name="purple">#bc5090</color>
+    <color name="purple_highlight">#ff6361</color>
+    <color name="yellow_shadow">#ff8531</color>
+    <color name="yellow">#ffa600</color>
+    <color name="yellow_highlight">#ffd380</color>
 </resources>

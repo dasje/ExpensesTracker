@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">TheExpendables</string>
+    <string name="label_current_month">Current month</string>
+    <string name="table_header_expense">Expense</string>
+    <string name="table_header_value">Amount</string>
+    <string name="table_header_active">Active</string>
+    <string name="table_header_paid">Paid</string>
+    <string name="label_table_total">Total</string>
+    <string name="label_table_total_left">Total left to pay</string>
+    <string name="label_savings">Saving amount</string>
+    <string name="label_income_value">Income (monthly)</string>
+    <string name="label_remaining_budget">The Expendables</string>
 </resources>
