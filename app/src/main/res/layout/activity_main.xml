@@ -52,8 +52,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/expenseRecycler"
-        android:layout_width="395dp"
-        android:layout_height="300dp"
+        android:layout_width="399dp"
+        android:layout_height="411dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,45 +66,32 @@
         android:id="@+id/tableTotalValue"
         android:layout_width="154dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="104dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="108dp"
         android:ems="10"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expenseRecycler"
         tools:ignore="TextViewEdits" />
 
-    <EditText
-        android:id="@+id/incomeValue"
-        android:layout_width="154dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="100dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/savingsValue"
-        tools:ignore="LabelFor" />
-
     <TextView
-        android:id="@+id/labelRemainingBudget"
+        android:id="@+id/savingsLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/label_remaining_budget"
+        android:layout_marginTop="40dp"
+        android:text="@string/label_savings"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/remainingBudgetValue"
-        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintEnd_toStartOf="@+id/savingsValue"
+        app:layout_constraintHorizontal_bias="0.744"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/incomeMonthlyLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/tableTotalRemainingLabel" />
 
     <EditText
         android:id="@+id/savingsValue"
         android:layout_width="154dp"
         android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="108dp"
         android:autofillHints=""
         android:ems="10"
         android:inputType="numberDecimal"
@@ -112,12 +99,37 @@
         app:layout_constraintTop_toBottomOf="@+id/tableTotalLeftValue"
         tools:ignore="LabelFor" />
 
+    <TextView
+        android:id="@+id/incomeMonthlyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/label_income_value"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/incomeValue"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/savingsLabel"
+        tools:ignore="TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/labelRemainingBudget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/label_remaining_budget"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/remainingBudgetValue"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/incomeMonthlyLabel" />
+
     <EditText
         android:id="@+id/remainingBudgetValue"
         android:layout_width="154dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="108dp"
         android:autofillHints=""
         android:ems="10"
         android:inputType="numberDecimal"
@@ -126,62 +138,50 @@
         tools:ignore="LabelFor" />
 
     <TextView
-        android:id="@+id/incomeMonthlyLabel"
+        android:id="@+id/tableTotalRemainingLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="@string/label_income_value"
+        android:layout_marginTop="44dp"
+        android:text="@string/label_table_total_left"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/incomeValue"
-        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintEnd_toStartOf="@+id/tableTotalLeftValue"
+        app:layout_constraintHorizontal_bias="0.717"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/savingsLabel"
-        tools:ignore="TextSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/tableTotalLabel" />
+
+    <EditText
+        android:id="@+id/incomeValue"
+        android:layout_width="154dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="108dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/savingsValue"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/tableTotalLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="7dp"
         android:text="@string/label_table_total"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/tableTotalValue"
-        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintHorizontal_bias="0.915"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expenseRecycler"
         tools:ignore="TextSizeCheck" />
 
     <TextView
-        android:id="@+id/savingsLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/label_savings"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/savingsValue"
-        app:layout_constraintHorizontal_bias="0.764"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableTotalRemainingLabel" />
-
-    <TextView
-        android:id="@+id/tableTotalRemainingLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/label_table_total_left"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/tableTotalLeftValue"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableTotalLabel" />
-
-    <TextView
         android:id="@+id/tableTotalLeftValue"
         android:layout_width="154dp"
         android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="104dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="108dp"
         android:ems="10"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -199,7 +199,7 @@
         app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expenseRecycler"
-        app:layout_constraintVertical_bias="0.571"
+        app:layout_constraintVertical_bias="0.817"
         app:srcCompat="@drawable/add_expense_icon_medium" />
 
     <TextView

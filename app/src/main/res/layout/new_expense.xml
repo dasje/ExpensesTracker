@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#00FFFFFF">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/addNewExpenseCard"
+        android:layout_width="334dp"
+        android:layout_height="626dp"
+        android:outlineAmbientShadowColor="@color/yellow_shadow"
+        android:outlineSpotShadowColor="@color/yellow_shadow"
+        app:cardBackgroundColor="@color/yellow"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="100dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="false" >
+
+        <TextView
+            android:id="@+id/addNewExpenseTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/title_popup_add_new_expense" />
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
