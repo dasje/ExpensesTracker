@@ -9,5 +9,7 @@
     <string name="label_table_total_left">Total left to pay</string>
     <string name="label_savings">Saving amount</string>
     <string name="label_income_value">Income (monthly)</string>
-    <string name="label_remaining_budget">The Expendables</string>
+    <string name="label_remaining_budget">Remaining budget</string>
+    <string name="add_new_expense">Add new expense</string>
+    <string name="month_separator">-</string>
 </resources>
