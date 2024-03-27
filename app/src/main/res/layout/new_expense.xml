@@ -1,27 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="#00FFFFFF">
+    android:id="@+id/new_expense_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow"
+    android:fadingEdge="horizontal|vertical"
+    android:padding="20dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/addNewExpenseCard"
-        android:layout_width="334dp"
-        android:layout_height="626dp"
-        android:outlineAmbientShadowColor="@color/yellow_shadow"
-        android:outlineSpotShadowColor="@color/yellow_shadow"
-        app:cardBackgroundColor="@color/yellow"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="100dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="false" >
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:shrinkColumns="*"
+        android:stretchColumns="*">
 
-        <TextView
-            android:id="@+id/addNewExpenseTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="@string/title_popup_add_new_expense" />
-    </androidx.cardview.widget.CardView>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_span="2"
+                android:text="@string/title_popup_add_new_expense"
+                android:textAlignment="center"
+                android:textSize="34sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/addExpensePopupLabelNewExpenseName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:text="@string/label_popup_new_expense_name"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/addExpensePopupLabelNewExpenseNameValue"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:inputType="text|textAutoComplete"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/addExpensePopupLabelNewExpenseAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:text="@string/label_popup_new_expense_value"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/addExpensePopupLabelNewExpenseAmountValue"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:inputType="number|numberDecimal"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/addExpensePopupLabelNewExpenseGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:text="@string/label_popup_new_expense_group"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/addExpensePopupLabelNewExpenseGroupValue"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:inputType="text|textAutoComplete"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout android:layout_span="2">
+
+                <ImageButton
+                    android:id="@+id/addExpensePopupCancelButton"
+                    android:layout_width="68dp"
+                    android:layout_height="66dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="112dp"
+                    android:layout_marginEnd="231dp"
+                    app:srcCompat="@drawable/baseline_cancel_24" />
+
+                <ImageButton
+                    android:id="@+id/addExpensePopupAddButton"
+                    android:layout_width="68dp"
+                    android:layout_height="66dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="226dp"
+                    android:layout_marginEnd="117dp"
+                    app:srcCompat="@drawable/baseline_add_circle_24" />
+            </RelativeLayout>
+
+        </TableRow>
+    </TableLayout>
 </RelativeLayout>

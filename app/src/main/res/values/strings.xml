@@ -13,4 +13,7 @@
     <string name="add_new_expense">Add new expense</string>
     <string name="month_separator">-</string>
     <string name="title_popup_add_new_expense">Add new expense</string>
+    <string name="label_popup_new_expense_name">Expense name</string>
+    <string name="label_popup_new_expense_value">Amount</string>
+    <string name="label_popup_new_expense_group">Group</string>
 </resources>

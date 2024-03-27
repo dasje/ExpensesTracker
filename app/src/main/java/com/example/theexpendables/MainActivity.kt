@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.PopupWindow
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -55,8 +56,8 @@ class MainActivity : AppCompatActivity() {
         val popupView: View = inflater.inflate(R.layout.new_expense, null)
 
         // create the popup window
-        val width = LinearLayout.LayoutParams.WRAP_CONTENT
-        val height = LinearLayout.LayoutParams.WRAP_CONTENT
+        val width = RelativeLayout.LayoutParams.WRAP_CONTENT
+        val height = RelativeLayout.LayoutParams.MATCH_PARENT
         val focusable = true // lets taps outside the popup also dismiss it
         val popupWindow = PopupWindow(popupView, width, height, focusable)
 
@@ -64,10 +65,17 @@ class MainActivity : AppCompatActivity() {
         // which view you pass in doesn't matter, it is only used for the window tolken
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
 
+//        var cancelButton : ImageButton = findViewById(R.id.addExpensePopupCancelButton)
+//        popupView.setOnClickListener(cancelButton.setOnClickListener { popupWindow. })
+
+//        var cancelButton: ImageButton = findViewById(R.id.addExpensePopupCancelButton)
+
+//        cancelButton.setOnClickListener { view -> popupWindow.dismiss() }
+
         // dismiss the popup window when touched
-        popupView.setOnTouchListener { v, event ->
-            popupWindow.dismiss()
-            true
-        }
+//        popupView.setOnTouchListener { v, event ->
+//            popupWindow.dismiss()
+//            true
+//        }
     }
 }

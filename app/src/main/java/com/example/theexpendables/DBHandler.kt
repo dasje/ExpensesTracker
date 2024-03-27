@@ -2,6 +2,7 @@ package com.example.theexpendables
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.provider.BaseColumns
 
 class DBHandler (context: Context) {
@@ -119,6 +120,22 @@ class DBHandler (context: Context) {
             selection,
             selectionArgs
         )
+    }
+
+    fun getUniqueGroups(): Cursor {
+        val db = dbHelper.writableDatabase
+        return db.query(
+            true,
+            ModelsContract.ExpenseEntries.TABLE_NAME,
+            arrayOf(ModelsContract.ExpenseEntries.COLUMN_NAME_GROUP),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+        )
+
     }
 
 }
