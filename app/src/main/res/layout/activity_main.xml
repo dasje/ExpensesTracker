@@ -8,12 +8,259 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/currentMonthLabel"
+        android:layout_width="109dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_current_month"
+        android:textAllCaps="false"
+        android:textColor="@color/blue_shadow"
+        android:textColorHighlight="@color/blue_highlight"
+        android:textIsSelectable="false"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck" />
+
+    <EditText
+        android:id="@+id/monthFromView"
+        android:layout_width="108dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintStart_toEndOf="@+id/currentMonthLabel"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/monthToView"
+        android:layout_width="108dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toEndOf="@+id/monthSeparator"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="LabelFor" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/expenseRecycler"
+        android:layout_width="395dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/columnHeaderValue"
+        tools:context=".MainActivity"
+        tools:itemCount="5"
+        tools:listitem="@layout/single_expense" />
+
+    <TextView
+        android:id="@+id/tableTotalValue"
+        android:layout_width="154dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="104dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expenseRecycler"
+        tools:ignore="TextViewEdits" />
+
+    <EditText
+        android:id="@+id/incomeValue"
+        android:layout_width="154dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="100dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/savingsValue"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/labelRemainingBudget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/label_remaining_budget"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/remainingBudgetValue"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/incomeMonthlyLabel" />
+
+    <EditText
+        android:id="@+id/savingsValue"
+        android:layout_width="154dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="100dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableTotalLeftValue"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/remainingBudgetValue"
+        android:layout_width="154dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="100dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/incomeValue"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/incomeMonthlyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/label_income_value"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/incomeValue"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/savingsLabel"
+        tools:ignore="TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/tableTotalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="7dp"
+        android:text="@string/label_table_total"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/tableTotalValue"
+        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expenseRecycler"
+        tools:ignore="TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/savingsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/label_savings"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/savingsValue"
+        app:layout_constraintHorizontal_bias="0.764"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableTotalRemainingLabel" />
+
+    <TextView
+        android:id="@+id/tableTotalRemainingLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/label_table_total_left"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/tableTotalLeftValue"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableTotalLabel" />
+
+    <TextView
+        android:id="@+id/tableTotalLeftValue"
+        android:layout_width="154dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="104dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableTotalValue"
+        tools:ignore="TextViewEdits" />
+
+    <ImageButton
+        android:id="@+id/addExpenseButton"
+        android:layout_width="68dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="224dp"
+        android:contentDescription="@string/add_new_expense"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expenseRecycler"
+        app:layout_constraintVertical_bias="0.571"
+        app:srcCompat="@drawable/add_expense_icon_medium" />
+
+    <TextView
+        android:id="@+id/monthSeparator"
+        android:layout_width="15dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="20dp"
+        android:accessibilityHeading="false"
+        android:text="@string/month_separator"
+        app:layout_constraintBottom_toTopOf="@+id/columnHeaderValue"
+        app:layout_constraintStart_toEndOf="@+id/monthFromView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48"
+        tools:ignore="TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/columnHeaderName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/table_header_expense"
+        app:layout_constraintBottom_toTopOf="@+id/expenseRecycler"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/monthFromView" />
+
+    <TextView
+        android:id="@+id/columnHeaderValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/table_header_value"
+        app:layout_constraintStart_toEndOf="@+id/columnHeaderName"
+        app:layout_constraintTop_toBottomOf="@+id/monthFromView" />
+
+    <TextView
+        android:id="@+id/columnHeaderActive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/table_header_active"
+        app:layout_constraintBottom_toTopOf="@+id/expenseRecycler"
+        app:layout_constraintStart_toEndOf="@+id/columnHeaderValue"
+        app:layout_constraintTop_toBottomOf="@+id/monthFromView" />
+
+    <TextView
+        android:id="@+id/columnHeaderPaid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/table_header_paid"
+        app:layout_constraintBottom_toTopOf="@+id/expenseRecycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toEndOf="@+id/columnHeaderActive"
+        app:layout_constraintTop_toBottomOf="@+id/monthFromView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
