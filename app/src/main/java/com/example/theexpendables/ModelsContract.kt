@@ -20,7 +20,7 @@ object ModelsContract {
                 "${ExpenseEntries.COLUMN_NAME_ACTIVE} INTEGER," +
                 "${ExpenseEntries.COLUMN_NAME_PAID} INTEGER," +
                 "${ExpenseEntries.COLUMN_NAME_GROUP} TEXT" +
-                ";"
+                ");"
 
     private const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${ExpenseEntries.TABLE_NAME};"
 
