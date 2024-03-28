@@ -38,6 +38,9 @@ class MainActivity : AppCompatActivity() {
         val adapter = ExpenseAdapter(data)
         expenseRecycler.adapter = adapter
 
+//        val addExpenseDialog = AddExpenseDialog()
+//        addExpenseDialog.show(AddExpenseDialog, "x")
+
         val newExpenseButton = findViewById<ImageButton>(R.id.addExpenseButton)
         newExpenseButton?.setOnClickListener {
             Toast.makeText(
@@ -45,37 +48,7 @@ class MainActivity : AppCompatActivity() {
                 "Adding a new expense",
                 Toast.LENGTH_SHORT
             ).show()
-            onButtonShowPopupWindowClick(findViewById(R.id.main))
+            AddExpenseDialog().show(supportFragmentManager, AddExpenseDialog.TAG)
         }
-    }
-
-    private fun onButtonShowPopupWindowClick(view: View?) {
-
-        // inflate the layout of the popup window
-        val inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val popupView: View = inflater.inflate(R.layout.new_expense, null)
-
-        // create the popup window
-        val width = RelativeLayout.LayoutParams.WRAP_CONTENT
-        val height = RelativeLayout.LayoutParams.MATCH_PARENT
-        val focusable = true // lets taps outside the popup also dismiss it
-        val popupWindow = PopupWindow(popupView, width, height, focusable)
-
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
-
-//        var cancelButton : ImageButton = findViewById(R.id.addExpensePopupCancelButton)
-//        popupView.setOnClickListener(cancelButton.setOnClickListener { popupWindow. })
-
-//        var cancelButton: ImageButton = findViewById(R.id.addExpensePopupCancelButton)
-
-//        cancelButton.setOnClickListener { view -> popupWindow.dismiss() }
-
-        // dismiss the popup window when touched
-//        popupView.setOnTouchListener { v, event ->
-//            popupWindow.dismiss()
-//            true
-//        }
     }
 }
