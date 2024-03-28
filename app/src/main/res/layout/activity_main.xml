@@ -194,6 +194,7 @@
         android:layout_height="66dp"
         android:layout_marginTop="224dp"
         android:contentDescription="@string/add_new_expense"
+        android:onClick="onAddNewExpenseButtonClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.953"

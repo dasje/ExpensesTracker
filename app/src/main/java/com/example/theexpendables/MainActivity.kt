@@ -1,16 +1,9 @@
 package com.example.theexpendables
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.LinearLayout
-import android.widget.PopupWindow
-import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,6 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,23 +30,30 @@ class MainActivity : AppCompatActivity() {
 
         val expenseRecycler = findViewById<RecyclerView>(R.id.expenseRecycler)
         expenseRecycler.layoutManager = LinearLayoutManager(this)
-        val data = ArrayList<ExpenseDataType>()
-        // TODO fetch data from db
+        var data = ArrayList<ExpenseDataType>()
+        var db = DBHandler(this)
+        data = db.readAllFromDB()
 
         val adapter = ExpenseAdapter(data)
         expenseRecycler.adapter = adapter
 
-//        val addExpenseDialog = AddExpenseDialog()
-//        addExpenseDialog.show(AddExpenseDialog, "x")
+    }
 
-        val newExpenseButton = findViewById<ImageButton>(R.id.addExpenseButton)
-        newExpenseButton?.setOnClickListener {
-            Toast.makeText(
-                this@MainActivity,
-                "Adding a new expense",
-                Toast.LENGTH_SHORT
-            ).show()
-            AddExpenseDialog().show(supportFragmentManager, AddExpenseDialog.TAG)
-        }
+    override fun onResume() {
+        super.onResume()
+
+//        var db = DBHandler(this)
+//
+//        data = db.readAllFromDB()
+//        for (i in updatedList
+//        ) {
+//            Log.i("DB", i.toString())
+//        }
+    }
+
+    fun onAddNewExpenseButtonClick(v: View) {
+        val newExpenseIntent = Intent(this, AddNewExpenseActivity::class.java)
+        startActivity(newExpenseIntent)
+
     }
 }

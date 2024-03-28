@@ -4,11 +4,14 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.provider.BaseColumns
+import android.util.Log
 
 class DBHandler (context: Context) {
     private val dbHelper = DBHelper(context)
 
     fun insertToDB(name: String, value: Float, active: Boolean, paid: Boolean, group: String): Long? {
+        // TODO Check expense doesn't already exist
+
         val db = dbHelper.writableDatabase
 
         var activeInt = 0
@@ -38,7 +41,7 @@ class DBHandler (context: Context) {
         return newRowId
     }
 
-    fun readAllFromDB() {
+    fun readAllFromDB(): ArrayList<ExpenseDataType> {
         val db = dbHelper.readableDatabase
 
         // Define a projection that specifies which columns from the database
@@ -64,16 +67,28 @@ class DBHandler (context: Context) {
             null,                   // don't filter by row groups
             sortOrder               // The sort order
         )
-        println(cursor)
+        Log.i("DB", "Cursor complete")
 
-//        val itemIds = mutableListOf<Long>()
-//        with(cursor) {
-//            while (moveToNext()) {
-//                val itemId = getLong(getColumnIndexOrThrow(BaseColumns._ID))
-//                itemIds.add(itemId)
-//            }
-//        }
+        val items = arrayListOf<ExpenseDataType>()
+        while (cursor.moveToNext()) {
+            var colInd = cursor.getColumnIndex(ModelsContract.ExpenseEntries.COLUMN_NAME_NAME)
+            val itemName = cursor.getString(colInd)
+            colInd = cursor.getColumnIndex(ModelsContract.ExpenseEntries.COLUMN_NAME_VALUE)
+            val itemValue = cursor.getString(colInd)
+            colInd = cursor.getColumnIndex(ModelsContract.ExpenseEntries.COLUMN_NAME_GROUP)
+            val itemGroup = cursor.getString(colInd)
+            colInd = cursor.getColumnIndex(ModelsContract.ExpenseEntries.COLUMN_NAME_ACTIVE)
+            val itemActive = cursor.getString(colInd)
+            colInd = cursor.getColumnIndex(ModelsContract.ExpenseEntries.COLUMN_NAME_PAID)
+            val itemPaid = cursor.getString(colInd)
+            items.add(ExpenseDataType(itemName, itemValue.toFloat(), itemActive.toBoolean(), itemPaid.toBoolean(), itemGroup))
+        }
+
+        Log.i("DB", "items generated")
         cursor.close()
+        db.close()
+
+        return items
     }
 
     fun deleteFromDB(expenseName: String): Int {
