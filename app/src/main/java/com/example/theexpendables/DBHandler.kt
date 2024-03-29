@@ -56,7 +56,7 @@ class DBHandler (context: Context) {
         )
 
         // How you want the results sorted in the resulting Cursor
-        val sortOrder = "${ModelsContract.ExpenseEntries.COLUMN_NAME_GROUP} DESC, ${ModelsContract.ExpenseEntries.COLUMN_NAME_NAME} DESC"
+        val sortOrder = "${ModelsContract.ExpenseEntries.COLUMN_NAME_NAME} ASC"
 
         val cursor = db.query(
             ModelsContract.ExpenseEntries.TABLE_NAME,   // The table to query
@@ -85,6 +85,7 @@ class DBHandler (context: Context) {
         }
 
         Log.i("DB", "items generated")
+        Log.i("DB", items.toString())
         cursor.close()
         db.close()
 
