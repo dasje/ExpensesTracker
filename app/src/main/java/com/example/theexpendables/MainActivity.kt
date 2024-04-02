@@ -2,6 +2,7 @@ package com.example.theexpendables
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +16,17 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         var data : MutableList<ExpenseDataType> = ArrayList()
-        val adapter = ExpenseAdapter(data)
+        private val adapterListener = object : ExpenseAdapter.AdapterListener {
+            override fun iconExpenseActiveOnClick(v: View?, position: Int) {
+                Log.d("LISTENER", "iconExpenseActiveOnClick at position $position")
+            }
+
+            override fun iconExpensePaidOnClick(v: View?, position: Int) {
+                Log.d("LISTENER", "iconExpensePaidOnClick at position $position")
+            }
+
+        }
+        val adapter = ExpenseAdapter(data, adapterListener)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
