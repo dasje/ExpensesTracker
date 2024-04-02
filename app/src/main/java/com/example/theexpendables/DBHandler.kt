@@ -36,7 +36,7 @@ class DBHandler (context: Context) {
 
         val newRowId = db?.insert(ModelsContract.ExpenseEntries.TABLE_NAME, null, values)
 
-        db?.close()
+//        db?.close()
 
         return newRowId
     }
@@ -90,7 +90,7 @@ class DBHandler (context: Context) {
         Log.i("DB", "items generated")
         Log.i("DB", items.toString())
         cursor.close()
-        db.close()
+//        db.close()
 
         return items
     }
@@ -102,8 +102,28 @@ class DBHandler (context: Context) {
         val selectionArgs = arrayOf(expenseName)
         // Issue SQL statement.
         val deletedRows = db.delete(ModelsContract.ExpenseEntries.TABLE_NAME, selection, selectionArgs)
-        db.close()
+//        db.close()
         return deletedRows
+    }
+
+    fun updateExpenseActiveState(expenseName: String, updateValue: Boolean): Int {
+        val db = dbHelper.writableDatabase
+
+        var newVal = if(updateValue) {1} else {0}
+
+        val values = ContentValues().apply {
+            put(ModelsContract.ExpenseEntries.COLUMN_NAME_ACTIVE, newVal)
+        }
+
+        // Which row to update, based on the title
+        val selection = "${ModelsContract.ExpenseEntries.COLUMN_NAME_NAME} = ?"
+        val selectionArgs = arrayOf(expenseName)
+        return db.update(
+            ModelsContract.ExpenseEntries.TABLE_NAME,
+            values,
+            selection,
+            selectionArgs
+        )
     }
 
     fun updateDB(expenseName: String, fieldName: String, updateValue: Any?): Int {
