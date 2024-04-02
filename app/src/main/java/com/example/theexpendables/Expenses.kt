@@ -36,6 +36,5 @@ class Expenses {
             }
             return Pair(totalExpenses.toFloat(), totalRemainingExpenses.toFloat())
         }
-        
     }
 }
