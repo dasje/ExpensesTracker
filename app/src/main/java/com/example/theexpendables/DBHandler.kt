@@ -56,7 +56,7 @@ class DBHandler (context: Context) {
         )
 
         // How you want the results sorted in the resulting Cursor
-        val sortOrder = "${ModelsContract.ExpenseEntries.COLUMN_NAME_GROUP} DESC, ${ModelsContract.ExpenseEntries.COLUMN_NAME_NAME} DESC"
+        val sortOrder = "${ModelsContract.ExpenseEntries.COLUMN_NAME_NAME} ASC"
 
         val cursor = db.query(
             ModelsContract.ExpenseEntries.TABLE_NAME,   // The table to query
@@ -78,13 +78,17 @@ class DBHandler (context: Context) {
             colInd = cursor.getColumnIndex(ModelsContract.ExpenseEntries.COLUMN_NAME_GROUP)
             val itemGroup = cursor.getString(colInd)
             colInd = cursor.getColumnIndex(ModelsContract.ExpenseEntries.COLUMN_NAME_ACTIVE)
-            val itemActive = cursor.getString(colInd)
+            val itemActiveRaw = cursor.getString(colInd)
+            var itemActive = itemActiveRaw=="1"
+            Log.i("DB", "item activity $itemActiveRaw $itemActive")
             colInd = cursor.getColumnIndex(ModelsContract.ExpenseEntries.COLUMN_NAME_PAID)
-            val itemPaid = cursor.getString(colInd)
-            items.add(ExpenseDataType(itemName, itemValue.toFloat(), itemActive.toBoolean(), itemPaid.toBoolean(), itemGroup))
+            val itemPaidRaw = cursor.getString(colInd)
+            var itemPaid = itemActiveRaw=="1"
+            items.add(ExpenseDataType(itemName, itemValue.toFloat(), itemActive, itemPaid, itemGroup))
         }
 
         Log.i("DB", "items generated")
+        Log.i("DB", items.toString())
         cursor.close()
         db.close()
 

@@ -10,20 +10,47 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:padding="5dp">
 
         <TextView
             android:id="@+id/textExpenseListName"
-            android:layout_width="wrap_content"
+            android:layout_width="166dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Item"
+            android:text="ItemName"
             android:textSize="20sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
+        <TextView
+            android:id="@+id/textExpenseListAmount"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="ItemValue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/checkSelectActive"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false" />
+
+        <CheckBox
+            android:id="@+id/checkSelectPaid"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false" />
+
+
     </LinearLayout>
+
+
 
 </androidx.cardview.widget.CardView>
