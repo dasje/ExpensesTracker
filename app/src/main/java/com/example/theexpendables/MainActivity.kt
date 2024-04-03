@@ -1,8 +1,13 @@
 package com.example.theexpendables
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,7 +20,40 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         var data : MutableList<ExpenseDataType> = ArrayList()
-        val adapter = ExpenseAdapter(data)
+        private val adapterListener = object : ExpenseAdapter.AdapterListener {
+            override fun iconExpenseActiveOnClick(v: View?, expenseName: String, checkedValue: Boolean, position: Int) {
+                Log.d("LISTENER", "iconExpenseActiveOnClick value is $checkedValue")
+                var db = v?.let { DBHandler(v.context) }
+                var updated = db?.updateExpenseActiveState(expenseName, checkedValue)
+                Log.d("LISTENER", "iconExpenseActiveOnClick updated value $updated")
+                data.clear()
+                if (v != null) {
+                    updateDataList(v.context)
+                }
+            }
+
+            override fun iconExpensePaidOnClick(v: View?, expenseName: String, checkedValue: Boolean, position: Int) {
+                Log.d("LISTENER", "iconExpensePaidOnClick at position $position")
+                var db = v?.let { DBHandler(v.context) }
+                var updated = db?.updateExpensePaidState(expenseName, checkedValue)
+                Log.d("LISTENER", "iconExpensePaidOnClick updated value $updated")
+                data.clear()
+                if (v != null) {
+                    updateDataList(v.context)
+                }
+            }
+
+        }
+        val adapter = ExpenseAdapter(data, adapterListener)
+
+        @SuppressLint("NotifyDataSetChanged")
+        private fun updateDataList(context: Context) {
+            var db = DBHandler(context)
+            var newData = db.readAllFromDB()
+            data.clear()
+            data.addAll(0, newData.toMutableList())
+            adapter.notifyDataSetChanged()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,26 +67,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         val expenseRecycler = findViewById<RecyclerView>(R.id.expenseRecycler)
+
+        expenseRecycler.setOnClickListener(View.OnClickListener { v ->
+            Log.i("ExpenseRecycler", "Recycler clicked")
+        })
+
         expenseRecycler.layoutManager
         expenseRecycler.layoutManager = LinearLayoutManager(this)
 
         expenseRecycler.adapter = adapter
 
-        var db = DBHandler(this)
-        var newData = db.readAllFromDB()
-        data.clear()
-        data.addAll(0, newData.toMutableList())
-        adapter.notifyDataSetChanged()
-
+        updateDataList(this)
     }
 
     override fun onResume() {
         super.onResume()
-        var db = DBHandler(this)
-        var newData = db.readAllFromDB()
-        data.clear()
-        data.addAll(0, newData.toMutableList())
-        adapter.notifyDataSetChanged()
+        updateDataList(this)
     }
 
     fun onAddNewExpenseButtonClick(v: View) {

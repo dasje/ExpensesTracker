@@ -1,5 +1,7 @@
 package com.example.theexpendables
 
+import android.R
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,14 +9,25 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ExpenseAdapter (private val mList: List<ExpenseDataType>) : RecyclerView.Adapter<ExpenseAdapter.ViewHolder>() {
+
+class ExpenseAdapter (private val mList: List<ExpenseDataType>, private val listener: AdapterListener) : RecyclerView.Adapter<ExpenseAdapter.ViewHolder>() {
+
+    interface AdapterListener {
+        fun iconExpenseActiveOnClick(v: View?, expenseName: String, checkedValue: Boolean, position: Int)
+        fun iconExpensePaidOnClick(v: View?, expenseName: String, checkedValue: Boolean, position: Int)
+    }
 
     companion object {
-
+        lateinit var onClickListener: AdapterListener
     }
+
+    init {
+        onClickListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.single_expense, parent, false)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val view = layoutInflater.inflate(com.example.theexpendables.R.layout.single_expense, parent, false)
 
         return ViewHolder(view)
     }
@@ -28,11 +41,6 @@ class ExpenseAdapter (private val mList: List<ExpenseDataType>) : RecyclerView.A
         holder.expenseAmount.text = itemsViewModel.value.toString()
         holder.expenseActive.isChecked = itemsViewModel.active
         holder.expensePaid.isChecked = itemsViewModel.paid
-
-//        holder.expenseActive.setOnClickListener(View.OnClickListener { view ->
-//            var db = DBHandler(ExpenseAdapter)
-//            db.updateDB()
-//        })
     }
 
     // return the number of the items in the list
@@ -41,10 +49,39 @@ class ExpenseAdapter (private val mList: List<ExpenseDataType>) : RecyclerView.A
     }
 
     // Holds the views for adding it to image and text
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val expenseName: TextView = itemView.findViewById(R.id.textExpenseListName)
-        val expenseAmount: TextView = itemView.findViewById(R.id.textExpenseListAmount)
-        val expenseActive: CheckBox = itemView.findViewById(R.id.checkSelectActive)
-        val expensePaid: CheckBox = itemView.findViewById(R.id.checkSelectPaid)
+
+        val expenseName: TextView = itemView.findViewById(com.example.theexpendables.R.id.textExpenseListName)
+        val expenseAmount: TextView = itemView.findViewById(com.example.theexpendables.R.id.textExpenseListAmount)
+        val expenseActive: CheckBox = itemView.findViewById(com.example.theexpendables.R.id.checkSelectActive)
+        val expensePaid: CheckBox = itemView.findViewById(com.example.theexpendables.R.id.checkSelectPaid)
+
+        init {
+            val expenseName: TextView = itemView.findViewById(com.example.theexpendables.R.id.textExpenseListName)
+            val expenseAmount: TextView = itemView.findViewById(com.example.theexpendables.R.id.textExpenseListAmount)
+            val expenseActive: CheckBox = itemView.findViewById(com.example.theexpendables.R.id.checkSelectActive)
+            val expensePaid: CheckBox = itemView.findViewById(com.example.theexpendables.R.id.checkSelectPaid)
+
+            expenseActive.setOnClickListener { v ->
+                onClickListener.iconExpenseActiveOnClick(
+                    v,
+                    expenseName.text.toString(),
+                    expenseActive.isChecked,
+                    adapterPosition
+                )
+                expenseActive.isChecked = !expenseActive.isChecked
+            }
+            expensePaid.setOnClickListener { v ->
+                onClickListener.iconExpensePaidOnClick(
+                    v,
+                    expenseName.text.toString(),
+                    expensePaid.isChecked,
+                    adapterPosition
+                )
+                expensePaid.isChecked = !expensePaid.isChecked
+            }
+        }
     }
+
 }
