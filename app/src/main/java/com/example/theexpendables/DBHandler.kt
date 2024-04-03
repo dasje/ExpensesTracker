@@ -126,6 +126,26 @@ class DBHandler (context: Context) {
         )
     }
 
+    fun updateExpensePaidState(expenseName: String, updateValue: Boolean): Int {
+        val db = dbHelper.writableDatabase
+
+        var newVal = if(updateValue) {1} else {0}
+
+        val values = ContentValues().apply {
+            put(ModelsContract.ExpenseEntries.COLUMN_NAME_PAID, newVal)
+        }
+
+        // Which row to update, based on the title
+        val selection = "${ModelsContract.ExpenseEntries.COLUMN_NAME_NAME} = ?"
+        val selectionArgs = arrayOf(expenseName)
+        return db.update(
+            ModelsContract.ExpenseEntries.TABLE_NAME,
+            values,
+            selection,
+            selectionArgs
+        )
+    }
+
     fun updateDB(expenseName: String, fieldName: String, updateValue: Any?): Int {
         val db = dbHelper.writableDatabase
 

@@ -30,11 +30,17 @@ class MainActivity : AppCompatActivity() {
                 if (v != null) {
                     updateDataList(v.context)
                 }
-
             }
 
-            override fun iconExpensePaidOnClick(v: View?, position: Int) {
+            override fun iconExpensePaidOnClick(v: View?, expenseName: String, checkedValue: Boolean, position: Int) {
                 Log.d("LISTENER", "iconExpensePaidOnClick at position $position")
+                var db = v?.let { DBHandler(v.context) }
+                var updated = db?.updateExpensePaidState(expenseName, checkedValue)
+                Log.d("LISTENER", "iconExpensePaidOnClick updated value $updated")
+                data.clear()
+                if (v != null) {
+                    updateDataList(v.context)
+                }
             }
 
         }

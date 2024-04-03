@@ -14,7 +14,7 @@ class ExpenseAdapter (private val mList: List<ExpenseDataType>, private val list
 
     interface AdapterListener {
         fun iconExpenseActiveOnClick(v: View?, expenseName: String, checkedValue: Boolean, position: Int)
-        fun iconExpensePaidOnClick(v: View?, position: Int)
+        fun iconExpensePaidOnClick(v: View?, expenseName: String, checkedValue: Boolean, position: Int)
     }
 
     companion object {
@@ -75,8 +75,11 @@ class ExpenseAdapter (private val mList: List<ExpenseDataType>, private val list
             expensePaid.setOnClickListener { v ->
                 onClickListener.iconExpensePaidOnClick(
                     v,
-                    getAdapterPosition()
+                    expenseName.text.toString(),
+                    expensePaid.isChecked,
+                    adapterPosition
                 )
+                expensePaid.isChecked = !expensePaid.isChecked
             }
         }
     }
