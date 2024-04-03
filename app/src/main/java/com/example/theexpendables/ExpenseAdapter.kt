@@ -1,6 +1,7 @@
 package com.example.theexpendables
 
 import android.R
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 class ExpenseAdapter (private val mList: List<ExpenseDataType>, private val listener: AdapterListener) : RecyclerView.Adapter<ExpenseAdapter.ViewHolder>() {
 
     interface AdapterListener {
-        fun iconExpenseActiveOnClick(v: View?, position: Int)
+        fun iconExpenseActiveOnClick(v: View?, expenseName: String, checkedValue: Boolean, position: Int)
         fun iconExpensePaidOnClick(v: View?, position: Int)
     }
 
@@ -40,11 +41,6 @@ class ExpenseAdapter (private val mList: List<ExpenseDataType>, private val list
         holder.expenseAmount.text = itemsViewModel.value.toString()
         holder.expenseActive.isChecked = itemsViewModel.active
         holder.expensePaid.isChecked = itemsViewModel.paid
-
-//        holder.expenseActive.setOnClickListener(View.OnClickListener { view ->
-//            var db = DBHandler(ExpenseAdapter)
-//            db.updateDB()
-//        })
     }
 
     // return the number of the items in the list
@@ -70,8 +66,11 @@ class ExpenseAdapter (private val mList: List<ExpenseDataType>, private val list
             expenseActive.setOnClickListener { v ->
                 onClickListener.iconExpenseActiveOnClick(
                     v,
-                    getAdapterPosition()
+                    expenseName.text.toString(),
+                    expenseActive.isChecked,
+                    adapterPosition
                 )
+                expenseActive.isChecked = !expenseActive.isChecked
             }
             expensePaid.setOnClickListener { v ->
                 onClickListener.iconExpensePaidOnClick(
